@@ -13,7 +13,7 @@ body {
   text-align: center;
 }
 
-.search-bar {
+/* .search-bar {
   display: flex;
   margin-top: 20px;
 
@@ -31,9 +31,9 @@ body {
 .search-bar input:focus{
   border-color: #007bff;
   box-shadow: 0 0 0 1px #007bff;
-}
+} */
 
-.search-bar button {
+/* .search-bar button {
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
@@ -47,9 +47,9 @@ body {
 
 .search-bar button:hover {
   background-color: #0056b3;
-}
+} */
 
-.load-more-button {
+.loadMoreButton {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 16px;

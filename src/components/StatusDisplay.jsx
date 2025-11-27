@@ -1,12 +1,13 @@
 import React from "react";
 import { useStore } from "../store.js";
 import GifGrid from "./GifGrid.jsx";
+import style from "./StatusDisplay.module.css";
 
 const StatusDisplay = () => {
   const { error, loading, hasSearched, gifs } = useStore();
 
   if (error) {
-    return <p className="error-message">Error: {error}</p>;
+    return <p className={style.errorMessage}>Error: {error}</p>;
   }
 
   if (loading && gifs.length === 0) {

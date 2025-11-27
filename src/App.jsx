@@ -1,37 +1,34 @@
 import React, { useEffect } from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import { useStore } from "./store";
 import SearchBar from "./components/SearchBar.jsx";
 import StatusDisplay from "./components/StatusDisplay.jsx";
+import useDebounce from "./useDebounce.js";
 
 function App() {
   const { searchTerm, loading, fetchGifs, gifs, totalGifs } = useStore();
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(() => {
-    const debounceTimeout = setTimeout(() => {
-      if (searchTerm.trim()) {
-        fetchGifs(searchTerm);
-      }
-    }, 500); // Espera 500ms después de la última pulsación de tecla
-
-    return () => {
-      clearTimeout(debounceTimeout);
-    };
-  }, [searchTerm, fetchGifs]);
+    if (debouncedSearchTerm.trim()) {
+      fetchGifs(debouncedSearchTerm);
+    }
+    // La dependencia ahora es el valor "debounced", no el término de búsqueda instantáneo.
+  }, [debouncedSearchTerm, fetchGifs]);
 
   const handleLoadMore = () => {
     fetchGifs(searchTerm, true);
   };
 
   return (
-    <div className="container">
-      <h1>Buscador de GIPHYs</h1>
+    <div className={styles.container}>
+      <h1>Buscador de GIPHYs con Gem</h1>
       <SearchBar />
 
       <StatusDisplay />
 
       {!loading && gifs.length > 0 && totalGifs > gifs.length && (
-        <button onClick={handleLoadMore} className="load-more-button">
+        <button onClick={handleLoadMore} className={styles.loadMoreButton}>
           Cargar más
         </button>
       )}

@@ -1,0 +1,5 @@
+.errorMessage {
+  color: #dc3545; /* Un color rojo estándar para errores */
+  font-weight: bold;
+  margin-top: 20px;
+}
